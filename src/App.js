@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Gallery from './components/Gallery';
 import SearchBar from './components/SearchBar';
+import { DataContext } from './context/DataContext';
 
 function App() {
   let [message, setMessage] = useState("search for music")
@@ -34,7 +35,10 @@ const handleSearch = (e, term) => {
     <div className="App">
       <SearchBar handleSearch={handleSearch}/>
       {message}
-      <Gallery data={data}/>
+      <DataContext.Provider value={data}>
+        <Gallery data={data}/>
+      </DataContext.Provider>
+      
     </div>
   );
 }
